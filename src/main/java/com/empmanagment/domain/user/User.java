@@ -2,6 +2,8 @@ package com.empmanagment.domain.user;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.function.Consumer;
+
 @Entity
 public class User {
     @Id
