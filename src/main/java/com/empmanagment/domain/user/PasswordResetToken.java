@@ -1,15 +1,23 @@
 package com.empmanagment.domain.user;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 @Entity
 public class PasswordResetToken {
+    @Transient
     private static final int EXPIRY_DATE = 60*24;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "password_reset_token_id")
     private Long passwordResetTokenId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
+    @Column
     private String token;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     public PasswordResetToken(){

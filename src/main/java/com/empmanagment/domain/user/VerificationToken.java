@@ -1,15 +1,24 @@
 package com.empmanagment.domain.user;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-
+@Entity
+@Table(name = "VerificationToken")
 public class VerificationToken {
+    @Transient
     private static final int EXPIRY_DATE = 60*24;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long verificationTokenId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
+    @Column
     private String token;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     public VerificationToken(){

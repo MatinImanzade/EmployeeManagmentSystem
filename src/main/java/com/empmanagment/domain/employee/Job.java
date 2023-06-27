@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Job.findAll",query = "SELECT j FROM Job j"),
+})
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
